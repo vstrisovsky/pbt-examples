@@ -1,2 +1,2 @@
 # pbt-examples
-exaamples for presentation
+examples for presentation
