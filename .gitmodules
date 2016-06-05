@@ -1,6 +1,12 @@
-[submodule "3rdpardy/cpp-quick-check"]
-	path = 3rdpardy/cpp-quick-check
+[submodule "build/3rdparty/catch"]
+	path = build/3rdparty/catch
+	url = git@github.com:philsquared/Catch.git
+[submodule "build/3rdparty/cpp-quick-check"]
+	path = build/3rdparty/cpp-quick-check
 	url = git@github.com:grogers0/CppQuickCheck.git
-[submodule "3rdpardy/catch"]
-	path = 3rdpardy/catch
+[submodule "3rdparty/cpp-quick-check"]
+	path = 3rdparty/cpp-quick-check
+	url = git@github.com:grogers0/CppQuickCheck.git
+[submodule "3rdparty/catch"]
+	path = 3rdparty/catch
 	url = git@github.com:philsquared/Catch.git
