@@ -14,9 +14,17 @@ TEST_CASE( "property based testing: quick sort", "[pbt]" )
           return std::is_sorted(sortedCollection.begin(), sortedCollection.end());
       }
       std::string name() const override
-    {
-        return "sorting should be sorted";
-    }
+      {
+          return "sorting should be sorted";
+      }
+      bool trivial(const std::vector<int> &v) const override
+      {
+          return v.size() == 0 || v.size() == 1;
+      }
+      std::string classify(const std::vector<int> &v) const override
+      {
+          return std::to_string(v.size());
+      }
   };
 
   SECTION("the output shoud be ordered")
@@ -35,6 +43,14 @@ TEST_CASE( "property based testing: quick sort", "[pbt]" )
       std::string name() const override
       {
           return "input - output permutation";
+      }
+      bool trivial(const std::vector<int> &v) const override
+      {
+          return v.size() == 0 || v.size() == 1;
+      }
+      std::string classify(const std::vector<int> &v) const override
+      {
+          return std::to_string(v.size());
       }
   };
 
