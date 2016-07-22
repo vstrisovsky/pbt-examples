@@ -14,22 +14,12 @@ TEST_CASE( "property based testing: quick sort", "[pbt]" )
                 std::vector<int> sortedCollection(v);
                 quicksort(sortedCollection.begin(), sortedCollection.end());
                 return std::is_sorted(sortedCollection.begin(), sortedCollection.end());
-            })
-          .trivial
-            ([](const std::vector<int>& v)
-            {
-              return v.size() == 0;
-            })
-         .classify
-            ([](const std::vector<int>& v)
-            {
-                return std::to_string(v.size());
             });
 
-      REQUIRE(test.test().result == cppqc::QC_SUCCESS);
+      REQUIRE(test.testWithOutput().result == cppqc::QC_SUCCESS);
   }
 
-  SECTION("the output shoud be permutation of the input")
+  SECTION("the output should be permutation of the input")
   {
       auto test = cppqc::gen<std::vector<int>>()
           .property("input - output permutation",
@@ -38,8 +28,18 @@ TEST_CASE( "property based testing: quick sort", "[pbt]" )
                 std::vector<int> sortedCollection(v);
                 quicksort(sortedCollection.begin(), sortedCollection.end());
                 return std::is_permutation(sortedCollection.begin(), sortedCollection.end(), v.begin());
-            });
+            })
+        .trivial
+          ([](const std::vector<int>& v)
+          {
+            return v.size() == 0;
+          })
+        .classify
+          ([](const std::vector<int>& v)
+          {
+              return std::to_string(v.size());
+          });
 
-      REQUIRE(test.test().result == cppqc::QC_SUCCESS);
+      REQUIRE(test.testWithOutput().result == cppqc::QC_SUCCESS);
   }
 }
