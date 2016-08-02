@@ -7,7 +7,7 @@ TEST_CASE( "property based testing: quick sort", "[pbt]" )
 {
   SECTION("the output shoud be ordered")
   {
-      auto test = cppqc::gen<std::vector<int>>()
+      auto prop = cppqc::gen<std::vector<int>>()
           .property("sorting should be sorted",
             [](const std::vector<int>& v)
             {
@@ -16,12 +16,12 @@ TEST_CASE( "property based testing: quick sort", "[pbt]" )
                 return std::is_sorted(sortedCollection.begin(), sortedCollection.end());
             });
 
-      REQUIRE(test.testWithOutput().result == cppqc::QC_SUCCESS);
+      REQUIRE(prop.testWithOutput().result == cppqc::QC_SUCCESS);
   }
 
   SECTION("the output should be permutation of the input")
   {
-      auto test = cppqc::gen<std::vector<int>>()
+      auto prop = cppqc::gen<std::vector<int>>()
           .property("input - output permutation",
             [](const std::vector<int>& v)
             {
@@ -40,6 +40,6 @@ TEST_CASE( "property based testing: quick sort", "[pbt]" )
               return std::to_string(v.size());
           });
 
-      REQUIRE(test.testWithOutput().result == cppqc::QC_SUCCESS);
+      REQUIRE(prop.testWithOutput().result == cppqc::QC_SUCCESS);
   }
 }
